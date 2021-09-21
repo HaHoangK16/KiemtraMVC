@@ -1,0 +1,50 @@
+﻿@model IEnumerable<KiemtraMVC.Models.Tinh>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Danh sách các tỉnh thành trong nước</h1>
+
+<div class="mb-3">
+    <a asp-action="Create" class="btn btn-outline-primary btn-sm float-right">Create New</a>
+    <form class="input-group w-50 float-left" asp-action="Search" method="get">
+        <input type="text" class="form-control" placeholder="Search for" name="term" />
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenTinh)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenTinh)
+                </td>
+                <td>
+                    <a asp-controller="Tinh" asp-action="Update" asp-route-id="@item.Id" class="btn btn-primary mx-2">Edit</a> |
+                    <a asp-controller="Tinh" asp-action="Details" asp-route-id="@item.Id" class="btn btn-info mx-2">Details</a> |
+                    <a asp-controller="Tinh" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger mx-2">Delete</a>
+                </td>
+            </tr>
+
+            
+        }
+    </tbody>
+</table>
